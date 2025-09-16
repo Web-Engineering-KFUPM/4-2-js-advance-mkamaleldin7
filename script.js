@@ -22,6 +22,34 @@ Task:
 4) Create an instance/object and output its attributes using the getter(s).
 */
 
+let student = {
+    firstName: "Mohamed",
+    lastName: "Kamaleldin",
+    gpa: 3.5,
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    },
+    set updateGPA(newGPA) {
+        if (newGPA >= 0.0 && newGPA <= 4.0) {
+            this.gpa = newGPA;
+        } else {
+            console.log("GPA should be between 0.0 and 4.0!!");
+        }
+    }
+};
+
+// Calling the methods:
+console.log(student.fullName); 
+console.log(student.gpa);
+
+// Valid Case
+student.updateGPA = 3.8;
+console.log(student.gpa);
+
+// Fail Case
+student.updateGPA = 4.5;
+
+console.log("=================================");
 // ====================================
 // TODO-2: OBJECT AS MAP + for...in LOOP
 // ====================================
@@ -30,6 +58,18 @@ Task:
 1) Make an object used as a "map" (key → value), e.g., course codes → titles.
 2) Iterate over it with for...in and display each key and value.
 */
+const courseMap = {
+   SWE363 : "Web Development",
+   COE301 : "Computer Architecture",
+   ICS343 : "Computer Networks"
+}
+
+for (course in courseMap) {
+    console.log(course + " : " + courseMap[course]);
+}
+
+
+console.log("=================================");
 
 // =========================================
 // TODO-3: STRING OBJECT — charAt() & length
@@ -39,6 +79,16 @@ Task:
 1) Create a String object or plain string.
 2) Use .charAt(index) and .length to output characters and size.
 */
+
+let myString = "Web Development is the Best!";
+console.log("String: " + myString);
+console.log("String Length: " + myString.length);
+console.log("First Character: " + myString.charAt(0));
+console.log("Sixth Character(index 5): " + myString.charAt(5));
+console.log("Last character: " + myString.charAt(myString.length - 1));
+
+console.log("=================================");
+
 
 // ===================================
 // TODO-4: DATE — day, month, and year
@@ -50,6 +100,15 @@ Task:
 //    (Hint: getDate(), getMonth(), getFullYear() )
 */
 
+let currentDate = new Date();
+console.log("Current Date: " + currentDate);
+console.log("Day of Month: " + currentDate.getDate());
+console.log("Month (0-11): " + currentDate.getMonth());
+console.log("Year: " + currentDate.getFullYear());
+
+console.log("=================================");
+
+
 // ============================================================
 // TODO-5: ARRAY + SPREAD — find MIN and MAX from 10 numbers
 // ============================================================
@@ -59,6 +118,16 @@ Task:
 2) Use spread syntax with Math.min(...) and Math.max(...) to find extremes.
 3) Display both values.
 */
+
+let myArray = [1,2,3,4,5,6,7,8,9,10];
+let min = Math.min(...myArray);
+let max = Math.max(...myArray);
+console.log("Array: " + myArray);
+console.log("Minimum Value: " + min);
+console.log("Maximum Value: " + max);
+
+console.log("=================================");
+
 
 // ===================================================================
 // TODO-6: EXCEPTIONS — try/catch/finally with EMPTY ARRAY edge case
@@ -71,6 +140,27 @@ Task:
    in each block so you can see the flow of control.
 */
 
+function findArrayMax(array) {
+    if ( array.length === 0 ){
+      throw new Error("Array is empty");
+    } 
+      return Math.max(...array);
+}
+
+try { 
+   let max = findArrayMax(myArray);
+   console.log("Maximum Value from Try Block: " + max);
+   let emptyArray = [];
+   max = findArrayMax(emptyArray);
+} catch (e){
+   console.log("Error: " + e.message);
+} finally {
+   console.log("Function completed.");
+}
+
+console.log("=================================");
+
+
 // ===================================================================================
 // TODO-7: REGEX + forEach — find words containing 'ab' and log matches from the list
 // ===================================================================================
@@ -82,5 +172,14 @@ Given: const words = ["ban", "babble", "make", "flab"];
 3) For matches, log "<word> matches!".
 4) Display the words that matches the pattern.
 */
+
+const words = ["ban", "babble", "make", "flab"];
+const pattern = /ab/;
+
+words.forEach(word => {
+    if (pattern.test(word)) {
+        console.log(word + " matches!");
+    }
+});   
 
 // End of Advance JavaScript Lab — good luck!
